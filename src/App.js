@@ -1,13 +1,14 @@
 import React, { Component } from "react";
-import Navbar from "./components/layouts/Navbar";
+import NavbarComp from "./components/layouts/NavbarComp";
+import UserItem from "./components/users/UserItem";
 import "./App.css";
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Navbar />
-        {/* <h1>Find coders</h1> */}
+        <NavbarComp />
+        <UserItem />
       </div>
     );
   }
