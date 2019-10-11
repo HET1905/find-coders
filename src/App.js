@@ -3,6 +3,7 @@ import axios from "axios";
 import NavbarComp from "./components/layouts/NavbarComp";
 import Users from "./components/users/Users";
 import Search from "./components/users/Search";
+
 import "./App.css";
 
 class App extends Component {
@@ -10,6 +11,7 @@ class App extends Component {
     users: [],
     loading: false
   };
+
   async componentDidMount() {
     this.setState({ loading: true });
     const res = await axios.get(
@@ -24,6 +26,7 @@ class App extends Component {
 
   searchUsers = async text => {
     console.log(text);
+    this.setState({ loading: true });
     const res = await axios.get(
       `https://api.github.com/search/users?q=${text}&
       client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}

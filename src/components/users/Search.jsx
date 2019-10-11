@@ -1,10 +1,14 @@
 import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
+import PropTypes from "prop-types";
 // import Button from "react-bootstrap/Button";
 
 class Search extends Component {
   state = {
     text: ""
+  };
+  static propTypes = {
+    searchUsers: PropTypes.func.isRequired
   };
   onChange = e => {
     this.setState({
