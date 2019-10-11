@@ -13,7 +13,11 @@ class Search extends Component {
   };
   onSubmit = e => {
     e.preventDefault();
-    console.log(this.state.text);
+    // passing the props to upper level
+    this.props.searchUsers(this.state.text);
+    this.setState({
+      text: ""
+    });
   };
   render() {
     return (
