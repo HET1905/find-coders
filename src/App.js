@@ -34,6 +34,7 @@ class App extends Component {
     );
 
     // console.log(res.data);
+    console.log(res.data.items);
     this.setState({ users: res.data.items, loading: false });
   };
 

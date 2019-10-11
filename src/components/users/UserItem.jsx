@@ -6,7 +6,7 @@ const UserItem = props => {
   const { login, avatar_url, html_url } = props.user;
 
   return (
-    <div id="cardContainer">
+    <div className="cardContainer">
       <Card>
         <Imgage
           className="mx-auto"

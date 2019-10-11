@@ -25,8 +25,8 @@ Users.propTypes = {
 
 const userSytyle = {
   display: "grid",
-  //   gridTemplateColumns: "repeat(auto-fill,minmax(200px, 1fr)",
-  gridTemplateColumns: "repeat(3, 1fr)",
+  gridTemplateColumns: "repeat(auto-fill,minmax(150px, 1fr)",
+  // gridTemplateColumns: "repeat(3, 1fr)",
   gridGap: "1rem"
 };
 
