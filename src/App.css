@@ -39,6 +39,11 @@ input {
 
 }
 
+input.btn {
+    margin-right: 10px;
+    width: 100px;
+}
+
 /* 
 .container {
     width: 100%;

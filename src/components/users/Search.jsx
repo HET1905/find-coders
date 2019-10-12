@@ -8,7 +8,8 @@ class Search extends Component {
     text: ""
   };
   static propTypes = {
-    searchUsers: PropTypes.func.isRequired
+    searchUsers: PropTypes.func.isRequired,
+    showClear: PropTypes.bool.isRequired
   };
   onChange = e => {
     this.setState({
@@ -18,9 +19,9 @@ class Search extends Component {
   onSubmit = e => {
     e.preventDefault();
     // passing the props to upper level
-    this.state.text
-      ? this.props.searchUsers(this.state.text)
-      : alert("Enter name to search");
+    // this.state.text
+    this.props.searchUsers(this.state.text);
+    // : alert("Enter name to search");
 
     this.setState({
       text: ""
@@ -41,6 +42,14 @@ class Search extends Component {
             Submit
           </Button> */}
           <input type="submit" value="Search" className="btn btn-primary" />
+          {this.props.showClear && (
+            <input
+              type="button"
+              className="btn btn-light"
+              value="Clear"
+              onClick={this.props.clearUsers}
+            />
+          )}
         </Form>
       </div>
     );
