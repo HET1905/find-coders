@@ -1,6 +1,6 @@
-[Find-coders](https://het1905.github.io/find-coders/)
+[Find-coders](https://find-coders.herokuapp.com/)
 
-Link : (https://het1905.github.io/find-coders/)
+Link : (https://find-coders.herokuapp.com/)
 
 ---
 
