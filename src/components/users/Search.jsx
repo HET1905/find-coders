@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
 import PropTypes from "prop-types";
+import { NONAME } from "dns";
 // import Button from "react-bootstrap/Button";
 
 class Search extends Component {
@@ -28,6 +29,7 @@ class Search extends Component {
     });
   };
   render() {
+    const { showClear, clearUsers } = this.props;
     return (
       <div>
         <Form onSubmit={this.onSubmit}>
@@ -41,13 +43,16 @@ class Search extends Component {
           {/* <Button variant="primary" type="submit">
             Submit
           </Button> */}
-          <input type="submit" value="Search" className="btn btn-primary" />
-          {this.props.showClear && (
+
+          {this.state.text ? (
+            <input type="submit" value="Search" className="btn btn-primary" />
+          ) : null}
+          {showClear && (
             <input
               type="button"
               className="btn btn-light"
               value="Clear"
-              onClick={this.props.clearUsers}
+              onClick={clearUsers}
             />
           )}
         </Form>
