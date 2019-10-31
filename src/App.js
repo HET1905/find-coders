@@ -1,15 +1,19 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import axios from "axios";
 import NavbarComp from "./components/layouts/NavbarComp";
 import Users from "./components/users/Users";
 import Search from "./components/users/Search";
+import Alert from "./components/layouts/Alert";
+import About from "./components/pages/About";
 
 import "./App.css";
 
 class App extends Component {
   state = {
     users: [],
-    loading: false
+    loading: false,
+    alert: null
   };
 
   async componentDidMount() {
@@ -38,20 +42,54 @@ class App extends Component {
     this.setState({ users: res.data.items, loading: false });
   };
   clearUsers = () => this.setState({ users: [], loading: false });
+
+  setAlerts = (msg, type) => {
+    this.setState({
+      alert: {
+        msg: msg,
+        type: type
+      }
+    });
+
+    setTimeout(
+      () =>
+        this.setState({
+          alert: null
+        }),
+      5000
+    );
+  };
   render() {
+    const { users, loading } = this.state;
     return (
-      <div className="container-fluid">
-        <NavbarComp />
-        <div className="container">
-          {/* receving the props from child component passsing it to App */}
-          <Search
-            searchUsers={this.searchUsers}
-            clearUsers={this.clearUsers}
-            showClear={this.state.users.length > 0 ? true : false}
-          />
-          <Users users={this.state.users} loading={this.state.loading} />
+      <Router>
+        <div className="container-fluid">
+          <NavbarComp />
+
+          <div className="container">
+            <Alert alert={this.state.alert} />
+            <Switch>
+              <Route
+                exact
+                path="/"
+                render={props => (
+                  <Fragment>
+                    {/* receving the props from child component passsing it to App */}
+                    <Search
+                      searchUsers={this.searchUsers}
+                      clearUsers={this.clearUsers}
+                      showClear={users.length > 0 ? true : false}
+                      setAlerts={this.setAlerts}
+                    />
+                    <Users users={users} loading={loading} />
+                  </Fragment>
+                )}
+              />
+              <Route exact path="/about" component={About} />
+            </Switch>
+          </div>
         </div>
-      </div>
+      </Router>
     );
   }
 }

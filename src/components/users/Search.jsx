@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
 import PropTypes from "prop-types";
-import { NONAME } from "dns";
+
 // import Button from "react-bootstrap/Button";
 
 class Search extends Component {
@@ -10,7 +10,9 @@ class Search extends Component {
   };
   static propTypes = {
     searchUsers: PropTypes.func.isRequired,
-    showClear: PropTypes.bool.isRequired
+    clearUsers: PropTypes.func.isRequired,
+    showClear: PropTypes.bool.isRequired,
+    setAlerts: PropTypes.func.isRequired
   };
   onChange = e => {
     this.setState({
@@ -19,14 +21,15 @@ class Search extends Component {
   };
   onSubmit = e => {
     e.preventDefault();
-    // passing the props to upper level
-    // this.state.text
-    this.props.searchUsers(this.state.text);
-    // : alert("Enter name to search");
-
-    this.setState({
-      text: ""
-    });
+    if (this.state.text === "") {
+      this.props.setAlerts("Please enter the words to search..", "light");
+    } else {
+      // passing the props to upper level
+      this.props.searchUsers(this.state.text);
+      this.setState({
+        text: ""
+      });
+    }
   };
   render() {
     const { showClear, clearUsers } = this.props;
@@ -44,9 +47,8 @@ class Search extends Component {
             Submit
           </Button> */}
 
-          {this.state.text ? (
-            <input type="submit" value="Search" className="btn btn-primary" />
-          ) : null}
+          <input type="submit" value="Search" className="btn btn-primary" />
+
           {showClear && (
             <input
               type="button"
