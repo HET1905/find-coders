@@ -82,6 +82,32 @@ input.btn {
   padding-left: 10px;
 }
 
+.badge {
+  width: 130px;
+  height: 35px;
+  margin-right: 5px;
+  margin-top: 5px;
+  font-size: 0.9em;
+  text-align: center;
+}
+
+.infoCard {
+  display: flex;
+  padding: 10px;
+  margin-top: 10px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  text-align: center;
+
+}
+
+.cardUser:hover {
+  background: #222;
+  color: #fff;
+  ;
+}
+
+
 /* 
 .container {
     width: 100%;

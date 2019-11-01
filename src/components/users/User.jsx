@@ -19,6 +19,9 @@ class User extends Component {
       blog,
       bio,
       followers,
+      following,
+      public_gists,
+      public_repos,
       location,
       hireable,
       html_url
@@ -28,8 +31,8 @@ class User extends Component {
     return (
       <div>
         <div
-          className="card mt-2 px-2"
-          style={{ width: "400px", height: "600px" }}
+          className="card cardUser mt-2 px-2 text-center"
+          style={{ width: "600px", height: "auto" }}
         >
           <h1 className="card-title">{name}</h1>
           <h4>{location}</h4>
@@ -45,19 +48,28 @@ class User extends Component {
           <img
             src={avatar_url}
             alt="avtar"
-            className="rounded-circle card-img-top"
+            className="card-img-top rounded-circle mx-auto"
             style={{ width: "150px" }}
           />
           <div className="card-body">
             <p>
-              Blog : <Link to={blog}>{blog}</Link>
+              Website : <a href={blog}>{blog}</a>
             </p>
             <p>Bio : {bio}</p>
-            <p>Followers : {followers}</p>
+
             <a href={html_url} className="btn btn-primary">
               Visit GitHub Profile
             </a>
           </div>
+        </div>
+        <div
+          className="card infoCard"
+          style={{ width: "600px", height: "auto" }}
+        >
+          <span className="badge badge-primary">Followers : {followers}</span>
+          <span class="badge badge-secondary">Following : {following}</span>
+          <span class="badge badge-success">Public Repos : {public_repos}</span>
+          <span class="badge badge-danger">Public Gists : {public_gists}</span>
         </div>
       </div>
     );
