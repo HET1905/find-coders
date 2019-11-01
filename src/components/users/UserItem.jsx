@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Imgage from "react-bootstrap/Image";
 
@@ -17,9 +18,9 @@ const UserItem = props => {
         <Card.Body className="text-center">
           <Card.Title>{login}</Card.Title>
 
-          <Card.Link href={html_url} className="btn btn-primary btn-sm">
+          <Link to={`user/${login}`} className="btn btn-primary btn-sm">
             More
-          </Card.Link>
+          </Link>
         </Card.Body>
       </Card>
     </div>
