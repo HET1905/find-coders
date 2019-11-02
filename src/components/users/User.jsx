@@ -1,14 +1,16 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import Spinner from "../layouts/Spinner";
+import Repolist from "../repo/Repolist";
 
 class User extends Component {
   componentDidMount() {
     this.props.getUser(this.props.match.params.login);
+    this.props.getUserRepo(this.props.match.params.login);
   }
   static propTypes = {
     getUser: PropTypes.func.isRequired,
+    getUserRepo: PropTypes.func.isRequired,
     loading: PropTypes.bool.isRequired,
     user: PropTypes.object.isRequired
   };
@@ -26,7 +28,9 @@ class User extends Component {
       hireable,
       html_url
     } = this.props.user;
-    const { loading } = this.props;
+
+    const { loading, repos } = this.props;
+
     if (loading) return <Spinner />;
     return (
       <div>
@@ -39,9 +43,9 @@ class User extends Component {
           <h5>
             Hireable :{" "}
             {hireable ? (
-              <i class="fa fa-check"></i>
+              <i className="fa fa-check"></i>
             ) : (
-              <i class="fa fa-times-circle"></i>
+              <i className="fa fa-times-circle"></i>
             )}
           </h5>
 
@@ -67,10 +71,15 @@ class User extends Component {
           style={{ width: "600px", height: "auto" }}
         >
           <span className="badge badge-primary">Followers : {followers}</span>
-          <span class="badge badge-secondary">Following : {following}</span>
-          <span class="badge badge-success">Public Repos : {public_repos}</span>
-          <span class="badge badge-danger">Public Gists : {public_gists}</span>
+          <span className="badge badge-secondary">Following : {following}</span>
+          <span className="badge badge-success">
+            Public Repos : {public_repos}
+          </span>
+          <span className="badge badge-danger">
+            Public Gists : {public_gists}
+          </span>
         </div>
+        <Repolist repos={repos} />
       </div>
     );
   }
